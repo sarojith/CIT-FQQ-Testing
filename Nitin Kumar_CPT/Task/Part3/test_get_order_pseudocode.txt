@@ -1,0 +1,18 @@
+
+IMPORT requests
+
+CONSTANT BASE_URL = "https://api.example.com"
+
+FUNCTION test_get_order_returns_200_and_status_paid():
+    order_id = "ORD-1001"
+    url = BASE_URL + "/api/orders/" + order_id
+
+    response = requests.get(url)
+
+    ASSERT response.status_code == 200, "Expected HTTP 200 but got " + response.status_code
+
+    body = response.json()
+
+    ASSERT body["status"] == "PAID", "Expected status PAID but got " + body["status"]
+
+
